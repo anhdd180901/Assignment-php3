@@ -62,5 +62,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'testLogin' => \App\Http\Middleware\TestMidd::class,
+        // buoc thu 2 : truyen sang router de sd : web.php admin.php
+        //  'key'  => 'value'
     ];
 }

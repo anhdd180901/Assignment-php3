@@ -188,8 +188,8 @@
           <img src="{{asset('admin-theme/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            @if (Auth::check()==true)
-            <a href="" class="d-block">{{Auth::user()->name}}</a>
+            @if (Auth::check())
+            <a href="{{ route('user.getInfo', ['id'=>Auth::user()->id]) }}" class="d-block">{{Auth::user()->name}}</a>
             <a href="{{ route('logout.getLogout') }}" class="d-block">Logout</a>
             @else
             <a href="{{ route('login.getLogin') }}" class="d-block">Login</a>

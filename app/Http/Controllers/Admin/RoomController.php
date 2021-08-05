@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoomValidator;
 use App\Models\Room;
 use App\Models\RoomService;
 use App\Models\Service;
@@ -42,13 +43,17 @@ class RoomController extends Controller
         return view('admin.rooms.roomAdd', ['service' => $service]);
     }
 
-    public function postAdd(Request $request)
+    public function postAdd(RoomValidator $request)
     {
         //  luu thi` luu id service vao` room_service
         // dd($request->all());
         // $room = new Room();
         // $room = $request->all();
         // dump($request->id);die;
+        // $request->validate(,[
+        //     'room_no.required'=> 'ko dc de trong'
+        // ]);
+
         DB::beginTransaction(); //xử lý tuần tự, nếu có 1 luồng xử lý thành công thì sẽ lưu, ngược lại fail sẽ rollback lại dữ liệu bị sửa
         // $serviceID = $request->service_id;
         // $image = $request->file('image')->getClientOriginalName();
@@ -109,7 +114,7 @@ class RoomController extends Controller
         ]);
     }
 
-    public function postEdit(Request $request)
+    public function postEdit(RoomValidator $request)
     {
         // dd($request->all());
         $room = Room::where('id', $request->id)->update([

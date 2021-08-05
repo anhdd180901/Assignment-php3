@@ -31,9 +31,9 @@
                 @if (Auth::check()==true)
                 <a name="" id="" class="btn btn-primary" href="{{ route('room.getEdit', ['id'=>$room->id ]) }}" role="button">Edit</a>
                 <a name="" id="" class="btn btn-danger" href="{{ route('room.getDelete', ['id'=>$room->id ]) }}" role="button">Delete</a>
-                @else
                 @endif
             </td>
+
             <td>
 
             </td>

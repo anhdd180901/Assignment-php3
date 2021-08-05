@@ -1,10 +1,11 @@
 @extends('admin.layouts.main')
 @section('content')
-@if (Auth::check()==true)
+{{-- @if (Auth::check()==true) --}}
 <a href="{{ route('service.getAdd') }}" class="btn btn-primary">Them moi</a>
-@else
 
-@endif
+{{-- @else --}}
+
+{{-- @endif --}}
 <table class="table">
     <thead>
       <tr>
@@ -20,12 +21,10 @@
             <td>{{$service->name}}</td>
             <td><img src="/upload/services/{{$service->icon}}" width="100px" alt=""></td>
             <td>
-                @if (Auth::check()==true)
+                {{-- @if (Auth::check()) --}}
                 <a href="{{ route('service.getEdit', ['id'=>$service->id]) }}" role="button" class="btn btn-primary">Update</a>
                 <a href="{{ route('service.getDelete', ['id'=>$service->id]) }}" role="button" class="btn btn-danger">Delete</a>
-                @else
-
-                @endif
+                {{-- @endif --}}
             </td>
         </tr>
         @endforeach

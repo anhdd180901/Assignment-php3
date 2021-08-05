@@ -53,4 +53,12 @@ class UserController extends Controller
         $detailUser->delete();
         return redirect(route('user.getList'));
     }
+    public function getInfo(Request $request)
+    {
+        $id = $request->id;
+        //lấy dữ liệu vào trong biến detailUser với điều kiện id
+        $detailUser = User::where('id', $id)->first();
+        //  dump($detailUser);
+        return view('account.infoAccount', ['detail' => $detailUser]);
+    }
 }

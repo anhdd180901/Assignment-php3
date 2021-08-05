@@ -5,6 +5,9 @@
     <div class="form-group">
       <label for="">Tên</label>
       <input type="text" class="form-control" name="room_no" value="{{$rooms->room_no}}">
+      @error('room_no')
+                    <span class="text-danger">{{$message}}</span>
+                @enderror
     </div>
     <div class="form-group">
       <label for="">Dịch vụ</label>

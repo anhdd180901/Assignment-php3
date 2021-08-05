@@ -18,12 +18,8 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>
-                @if (Auth::check()==true)
                 <a href="{{ route('user.getEdit', ['id'=>$user->id]) }}" role="button" class="btn btn-primary">Update</a>
                 <a href="{{ route('user.getDelete', ['id'=>$user->id]) }}" role="button" class="btn btn-danger">Delete</a>
-                @else
-
-                @endif
             </td>
         </tr>
         @endforeach

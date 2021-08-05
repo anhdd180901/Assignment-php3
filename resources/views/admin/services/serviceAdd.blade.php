@@ -7,10 +7,16 @@
     <div class="form-group">
       <label for="">name</label>
       <input type="text"class="form-control" name="name">
+      @error('name')
+      <div class="alert alert-danger">{{ $message }}</div>
+  @enderror
     </div>
     <div class="form-group">
         <label for="">icon</label>
         <input type="file"class="form-control" name="icon">
+        @error('icon')
+        <p class="alert alert-danger">{{$messages}}</p>
+      @enderror
       </div>
     <button type="submit" class="btn btn-success">Them Moi</button>
 </form>
