@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserValidator;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -19,7 +21,7 @@ class UserController extends Controller
         $user = User::all();
         return view('admin.users.userAdd', ['users' => $user]);
     }
-    public function postAdd(Request $request)
+    public function postAdd(UserValidator $request)
     {
         //mã hóa password khi nhập vào
         $request->merge(['password' => Hash::make($request->password)]);
@@ -36,7 +38,7 @@ class UserController extends Controller
         //  dump($detailUser);
         return view('admin.users.userEdit', ['detail' => $detailUser]);
     }
-    public function postEdit(Request $request)
+    public function postEdit(UserValidator $request)
     {
         //lấy id
         $id = $request->id;
@@ -60,5 +62,20 @@ class UserController extends Controller
         $detailUser = User::where('id', $id)->first();
         //  dump($detailUser);
         return view('account.infoAccount', ['detail' => $detailUser]);
+    }
+    public function getChange(Request $request)
+    {
+        $id = $request->id;
+        $detailUser = User::where('id', $id)->first();
+        return view('account.changePassword', ['detail' => $detailUser]);
+    }
+    public function postChange(Request $request)
+    {
+        $id = $request->id;
+        $detailUser = User::where('id',$id)->first();
+        $request->merge(['password' => Hash::make($request->password)]);
+        $detailUser->update($request->all());
+        $detailUser->save();
+        return redirect(route('user.getInfo', ['id'=>Auth::user()->id], ['detail' => $detailUser]));
     }
 }

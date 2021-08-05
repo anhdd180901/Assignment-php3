@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserValidator extends FormRequest
 {
@@ -13,7 +14,7 @@ class UserValidator extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,26 @@ class UserValidator extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'name' => [
+                'required',
+            ],
+            'email' => [
+                'required',
+            ],
+            'password' => [
+                'required'
+            ]
         ];
+        return $rules;
+    }
+    public function messages()
+    {
+        $msg = [
+            'name.required' => 'Không được để trống',
+            'name.unique' => 'Tên đã có',
+            'email.required' => "Thiếu ảnh bạn ei"
+        ];
+        return $msg;
     }
 }

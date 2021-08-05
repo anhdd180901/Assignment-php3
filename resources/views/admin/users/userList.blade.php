@@ -1,10 +1,10 @@
 @extends('admin.layouts.main')
 @section('content')
-@if (Auth::check()==true)
+{{-- @if (Auth::check()==true) --}}
 <a href="{{ route('user.getAdd') }}" class="btn btn-primary">Thêm</a>
-@else
+{{-- @else --}}
 
-@endif
+{{-- @endif --}}
 <table class="table">
     <thead>
       <tr>

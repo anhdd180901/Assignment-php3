@@ -29,10 +29,18 @@ class RoomValidator extends FormRequest
                 "required",
                 Rule::unique('rooms')->ignore($this->id)
             ],
-            'floor'=> ['required'],
-            'image'=> ['required'],
-            'price'=> ['required'],
-            'detail'=> ['required']
+            'floor' => [
+                "numeric",
+                "min:1"
+            ],
+            'image' => [
+                "mimes:jpg,bmp,png"
+            ],
+            'price' => [
+                "numeric",
+                "min:0"
+            ],
+            'detail' => ['required']
         ];
         return $rules;
     }
@@ -40,12 +48,12 @@ class RoomValidator extends FormRequest
     public function messages()
     {
         $msg = [
-            'room_no.required'=> 'ko dc de trong',
-            'room_no.unique'=> 'ten da co',
-            'floor.required'=> 'ko dc de trong',
-            'price.required'=> 'ko dc de trong',
-            'image.required'=> 'ko dc de trong',
-            'detail.required'=> 'ko dc de trong',
+            'room_no.required' => 'Không được để trống',
+            'room_no.unique' => 'ten da co',
+            'floor.required' => 'Không được để trống',
+            'price.required' => 'Không được để trống',
+            'image.required' => 'Không được để trống',
+            'detail.required' => 'Không được để trống',
         ];
         return $msg;
     }

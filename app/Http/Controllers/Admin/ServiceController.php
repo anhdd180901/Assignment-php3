@@ -23,19 +23,14 @@ class ServiceController extends Controller
     {
         try {
             // dump($request->all());
-            $request->validate([
-                'name' => 'required',
-                'icon' => 'required',
-            ]);
-
             $name = $request->name;
-            // $icon = $request->icon;
-            // $nameIcon = $icon->getClientOriginalName();
-            // $link = $icon->move('upload/services', $nameIcon);
+            $icon = $request->icon;
+            $nameIcon = $icon->getClientOriginalName();
+            $link = $icon->move('upload/services', $nameIcon);
             //hàm tạo mới
             $add = Service::create([
                 'name' => $name,
-                // 'icon' => $nameIcon,
+                'icon' => $nameIcon,
             ]);
             if ($add) {
                 return redirect()->route('service.getList');

@@ -3,48 +3,48 @@
 <form action="{{ route('room.postAdd') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
-      <label for="">Tên</label>
-      <input type="text" class="form-control" name="room_no" value="{{old('room_no')}}">
+        <label for="">Tên</label>
+        <input type="text" class="form-control" name="room_no" value="{{old('room_no')}}">
     </div>
     @error('room_no')
-                    <span class="text-danger">{{$message}}</span>
-                @enderror
+    <span class="text-danger">{{$message}}</span>
+    @enderror
     <div class="form-group">
         <label for="">Dịch vụ</label>
         <select class="form-control" name="service_id[]" multiple>
-          @foreach ($service as $s)
-              <option value="{{$s->id}}">{{$s->name}}</option>
-          @endforeach
+            @foreach ($service as $s)
+            <option value="{{$s->id}}">{{$s->name}}</option>
+            @endforeach
         </select>
-      </div>
+    </div>
     <div class="form-group">
         <label for="">Số tầng</label>
         <input type="text" class="form-control" name="floor">
-      </div>
-      @error('floor')
-                    <span class="text-danger">{{$message}}</span>
-                @enderror
-      <div class="form-group">
+    </div>
+    @error('floor')
+    <span class="text-danger">{{$message}}</span>
+    @enderror
+    <div class="form-group">
         <label for="">Ảnh</label>
         <input type="file" class="form-control" name="image">
-      </div>
-      @error('image')
-                    <span class="text-danger">{{$message}}</span>
-                @enderror
-      <div class="form-group">
+    </div>
+    @error('image')
+    <span class="text-danger">{{$message}}</span>
+    @enderror
+    <div class="form-group">
         <label for="">Giá</label>
         <input type="text" class="form-control" name="price">
-      </div>
-      @error('price')
-                    <span class="text-danger">{{$message}}</span>
-                @enderror
-      <div class="form-group">
+    </div>
+    @error('price')
+    <span class="text-danger">{{$message}}</span>
+    @enderror
+    <div class="form-group">
         <label for="">Mô tả</label>
         <input type="text" class="form-control" name="detail">
-      </div>
-      @error('detail')
-      <span class="text-danger">{{$message}}</span>
-  @enderror
-    <button type="submit"class="btn btn-primary" >theem</button>
+    </div>
+    @error('detail')
+    <span class="text-danger">{{$message}}</span>
+    @enderror
+    <button type="submit" class="btn btn-primary">theem</button>
 </form>
 @endsection

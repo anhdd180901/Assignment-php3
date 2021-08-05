@@ -14,6 +14,7 @@
         <div class="form-group">
             <label for="">Password</label>
             <input type="password" disabled class="form-control" name="password">
+            <a href="{{ route('user.getChange',['id'=>Auth::user()->id]) }}" class="btn btn-primary">Đổi Password</a>
         </div>
     </form>
 @endsection

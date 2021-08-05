@@ -38,12 +38,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/add', [
             'as' => 'room.getAdd',
             'uses' => 'Admin\RoomController@getAdd',
-            'middleware' => 'testLogin' // nhu nay la co quyen`
+            // 'middleware' => 'testLogin' // nhu nay la co quyen`
         ]);
         Route::post('/add', [
             'as' => 'room.postAdd',
             'uses' => 'Admin\RoomController@postAdd',
-            'middleware' => 'testLogin' // nhu nay la co quyen`
+            // 'middleware' => 'testLogin' // nhu nay la co quyen`
         ]);
 
         //edit
@@ -72,14 +72,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/list', [
             'as' => 'service.getList',
             'uses' => 'Admin\ServiceController@getList',
-            // 'middleware' => 'testLogin' // nhu nay la co quyen`
+            'middleware' => 'testLogin' // nhu nay la co quyen`
         ]);
 
         //add
         Route::get('/add', [
             'as' => 'service.getAdd', //as la name
             'uses' => 'Admin\ServiceController@getAdd', // uses : Controllerxuli@ham xu li
-            // 'middleware' => 'testLogin' //middleware
+            'middleware' => 'testLogin' //middleware
         ]);
         Route::post('/add', [
             'as' => 'service.postAdd',
@@ -148,4 +148,15 @@ Route::get('/account/{id}', [
     'as' => 'user.getInfo',
     'uses' => 'Admin\UserController@getInfo',
     'middleware' => 'testLogin' // nhu nay la co quyen`
+]);
+
+Route::get('/change/{id}', [
+    'as' => 'user.getChange',
+    'uses' => 'Admin\UserController@getChange',
+    'middleware' => 'testLogin'
+]);
+Route::post('/change/{id}', [
+    'as' => 'user.postChange',
+    'uses' => 'Admin\UserController@postChange',
+    'middleware' => 'testLogin',
 ]);
