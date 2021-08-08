@@ -16,11 +16,18 @@ class UserController extends Controller
         $user = User::get();
         return view('admin.users.userList', ['users' => $user]);
     }
+
     public function getAdd()
     {
         $user = User::all();
         return view('admin.users.userAdd', ['users' => $user]);
+        try {
+            //code...
+        } catch (\Exception $th) {
+            dump($th->getMessage());
+        }
     }
+
     public function postAdd(UserValidator $request)
     {
         //mã hóa password khi nhập vào
@@ -29,6 +36,7 @@ class UserController extends Controller
         $user->save();
         return redirect(route('user.getList'));
     }
+
     public function getEdit(Request $request)
     {
         //lấy id
@@ -38,6 +46,7 @@ class UserController extends Controller
         //  dump($detailUser);
         return view('admin.users.userEdit', ['detail' => $detailUser]);
     }
+
     public function postEdit(UserValidator $request)
     {
         //lấy id
@@ -48,6 +57,7 @@ class UserController extends Controller
         $detailUser->save();
         return redirect(route('user.getList'));
     }
+
     public function getDelete(Request $request)
     {
         $id = $request->id;
@@ -55,6 +65,7 @@ class UserController extends Controller
         $detailUser->delete();
         return redirect(route('user.getList'));
     }
+
     public function getInfo(Request $request)
     {
         $id = $request->id;
@@ -63,19 +74,5 @@ class UserController extends Controller
         //  dump($detailUser);
         return view('account.infoAccount', ['detail' => $detailUser]);
     }
-    public function getChange(Request $request)
-    {
-        $id = $request->id;
-        $detailUser = User::where('id', $id)->first();
-        return view('account.changePassword', ['detail' => $detailUser]);
-    }
-    public function postChange(Request $request)
-    {
-        $id = $request->id;
-        $detailUser = User::where('id',$id)->first();
-        $request->merge(['password' => Hash::make($request->password)]);
-        $detailUser->update($request->all());
-        $detailUser->save();
-        return redirect(route('user.getInfo', ['id'=>Auth::user()->id], ['detail' => $detailUser]));
-    }
+
 }

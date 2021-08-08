@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/list', [
             'as' => 'room.getList',
             'uses' => 'Admin\RoomController@getList',
-            'middleware' => 'testLogin' // nhu nay la co quyen`
+            // 'middleware' => 'testLogin' // nhu nay la co quyen`
         ]);
 
         //add
@@ -72,7 +72,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/list', [
             'as' => 'service.getList',
             'uses' => 'Admin\ServiceController@getList',
-            'middleware' => 'testLogin' // nhu nay la co quyen`
+            // 'middleware' => 'testLogin' // nhu nay la co quyen`
         ]);
 
         //add
@@ -147,16 +147,16 @@ Route::prefix('admin')->group(function () {
 Route::get('/account/{id}', [
     'as' => 'user.getInfo',
     'uses' => 'Admin\UserController@getInfo',
-    'middleware' => 'testLogin' // nhu nay la co quyen`
+    // 'middleware' => 'testLogin' // nhu nay la co quyen`
 ]);
 
-Route::get('/change/{id}', [
-    'as' => 'user.getChange',
-    'uses' => 'Admin\UserController@getChange',
-    'middleware' => 'testLogin'
+Route::get('/change', [
+    'as' => 'password.getChange',
+    'uses' => 'PasswordController@getChange',
+    // 'middleware' => 'testLogin'
 ]);
-Route::post('/change/{id}', [
-    'as' => 'user.postChange',
-    'uses' => 'Admin\UserController@postChange',
-    'middleware' => 'testLogin',
+Route::post('/change', [
+    'as' => 'password.postChange',
+    'uses' => 'PasswordController@postChange',
+    // 'middleware' => 'testLogin',
 ]);
