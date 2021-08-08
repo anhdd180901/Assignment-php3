@@ -12,24 +12,18 @@ class PasswordController extends Controller
 {
     public function getChange(Request $request)
     {
-        return view('account.changePassword');
+        $id = $request->id;
+        $detailUser = User::where('id', $id)->first();
+        return view('account.changePassword', ['detail' => $detailUser]);
     }
 
     public function postChange(Request $request)
     {
-        // dd($request->all());
-        dd(Hash::make($request->password));
-        // $user = Auth::user();
-
-        // // $detailUser = User::where('id',$user->id)->first(); // bieet sua thang nao
-        // // $request->merge(['password' => Hash::make($request->password)]);
-        // // $detailUser->update($request->all());
-        // // $detailUser->save();
-
-        // $user->name=$request->input('name');
-        // $user->email=$request->input('email');
-        // $user->save();
-
-        return Redirect::route('user');
+        $id = $request->id;
+        $detailUser = User::where('id',$id)->first();
+        $request->merge(['password' => Hash::make($request->password)]);
+        $detailUser->update($request->all());
+        $detailUser->save();
+        return redirect(route('user.getInfo', ['id'=>Auth::user()->id], ['detail' => $detailUser]));
     }
 }

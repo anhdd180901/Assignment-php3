@@ -26,7 +26,6 @@ class RoomServiceFactory extends Factory
         return [
             'room_id' => Room::all()->random()->id,
             'service_id' =>Service::all()->random()->id,
-            'additional_price' => rand(100000, 10000000),
         ];
     }
 }

@@ -24,14 +24,14 @@
                 @endforeach
             </td>
             <td>{{$room->floor}}</td>
-            <td><img src="{{asset('images/'.$room->image)}}" width="100px" alt=""></td>
+            <td><img src="/upload/rooms/{{$room->image}}" width="100px" alt=""></td>
             <td><textarea name="" id="" cols="30"> {{$room->detail}} </textarea></td>
             <td>{{$room->price}}</td>
             <td>
-                @if (Auth::check()==true)
+                {{-- @if (Auth::check()==true) --}}
                 <a name="" id="" class="btn btn-primary" href="{{ route('room.getEdit', ['id'=>$room->id ]) }}" role="button">Edit</a>
                 <a name="" id="" class="btn btn-danger" href="{{ route('room.getDelete', ['id'=>$room->id ]) }}" role="button">Delete</a>
-                @endif
+                {{-- @endif --}}
             </td>
 
             <td>
@@ -42,9 +42,9 @@
 
     </tbody>
   </table>
-  @if (Auth::check()==true)
+  {{-- @if (Auth::check()==true) --}}
   <a name="" id="" class="btn btn-primary" href="{{ route('room.getAdd') }}" role="button">Thêm</a>
-  @else
+  {{-- @else --}}
 
-  @endif
+  {{-- @endif --}}
 @endsection

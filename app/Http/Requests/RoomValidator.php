@@ -34,6 +34,7 @@ class RoomValidator extends FormRequest
                 "min:1"
             ],
             'image' => [
+                'required',
                 "mimes:jpg,bmp,png"
             ],
             'price' => [

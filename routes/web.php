@@ -150,12 +150,12 @@ Route::get('/account/{id}', [
     // 'middleware' => 'testLogin' // nhu nay la co quyen`
 ]);
 
-Route::get('/change', [
+Route::get('/change/{id}', [
     'as' => 'password.getChange',
     'uses' => 'PasswordController@getChange',
     // 'middleware' => 'testLogin'
 ]);
-Route::post('/change', [
+Route::post('/change/{id}', [
     'as' => 'password.postChange',
     'uses' => 'PasswordController@postChange',
     // 'middleware' => 'testLogin',

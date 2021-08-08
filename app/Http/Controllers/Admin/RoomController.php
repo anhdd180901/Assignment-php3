@@ -50,31 +50,16 @@ class RoomController extends Controller
         // $room = new Room();
         // $room = $request->all();
         // dump($request->id);die;
-        // $request->validate(,[
-        //     'room_no.required'=> 'ko dc de trong'
-        // ]);
-
         DB::beginTransaction(); //xử lý tuần tự, nếu có 1 luồng xử lý thành công thì sẽ lưu, ngược lại fail sẽ rollback lại dữ liệu bị sửa
         // $serviceID = $request->service_id;
-        // $image = $request->file('image')->getClientOriginalName();
-        // $path_image = 'public/rooms';
-        // $path = $request->file('image')->storeAs($path_image, $image);
-        // $image = $request->file('image')->getClientOriginalName();
-        // $path_image = 'public/products';
-        // $path = $request->file('image')->storeAs($path_image, $image);
-        $rooms = new Room();
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $ext;
-            $file->move(public_path('images'), $filename);
-            $rooms->image = $filename;
-        }
-        $rooms = $this->room->create([
+        $image = $request->image;
+        $nameImg = $image->getClientOriginalName(); // b2 lay ra ten anh
+        $link =  $image->move('upload/rooms', $nameImg);
+        $room = $this->room->create([
             // 'id' => 1,
             'room_no' => $request->room_no,
             'floor' => $request->floor,
-            'image' => $filename,
+            'image' => $request->image,
             'detail' => $request->detail,
             'price' => $request->price,
             // theem 1 phong`
@@ -90,7 +75,7 @@ class RoomController extends Controller
         //         ]);
         //     }
 
-        $rooms->services()->attach($request->service_id);
+        $room->services()->attach($request->service_id);
 
 
         DB::commit(); //lưu các thay đổi khi thông qua transaction
